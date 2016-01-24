@@ -1,0 +1,112 @@
+<html ng-app="kayak">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>ka-yak boards</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+    <script src="app.js"></script>
+
+  </head>
+
+  <body ng-controller="PostController">
+
+    <div class="bg-parl">
+      <div class="jumbotron" ng-controller="QuoteController">
+
+        <div class="container">
+          <h1>Ka-yak</h1>
+          <!-- Randomly selected tagline, see QuoteController  -->
+          <h3>{{tagline}}</h3>
+        </div>
+
+      </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom" style="max-width:100vw">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button style="float:left" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav">
+            <li ng-show="currentUser"><a href="#" data-toggle="modal" data-target="#newpostmodal"><h4>New post</h4></a></li>
+            <li ng-controller="LoginController" ng-show="currentUser"><a href="#" ng-click="logout()"><h4>Sign out</h4></a></li>
+            <li ng-show="!currentUser"><a href="#" data-toggle="modal" data-target="#signinmodal"><h4>Sign in</h4></a></li>
+            <li ng-show="!currentUser"><a href="#" data-toggle="modal" data-target="#registermodal"><h4>Register</h4></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Modal that displays the new form directive -->
+    <div id="newpostmodal" class="modal fade" role="dialog">
+      <new-post></new-post>
+    </div>
+
+    <!-- Modal that displays the sign in directive -->
+    <div id="signinmodal" class="modal fade" role="dialog">
+      <sign-in></sign-in>
+    </div>
+
+    <!-- Modal that displays the sign in directive -->
+    <div id="registermodal" class="modal fade" role="dialog">
+      <register></register>
+    </div>
+
+    <div class="container">
+
+      <!-- This row contains anything related to the viewing of posts -->
+      <div class="row">
+
+        <div style="margin-left:10px;margin-bottom:40px;">
+
+          <h1>Here's what people are talking about</h1>
+
+          <!-- Drop down menu to filter results based on which board they're posted in -->
+          <div class="form-group form-inline">
+
+              <button class="btn btn-center" ng-click="postOrder = '';active=true" ng-class="{'btn-success':active}">New</button>
+              <button class="btn btn-center" ng-click="postOrder = '-score';active=false" ng-class="{'btn-success':!active}">Hot</button>
+
+              <select class="form-control" style="margin-bottom:10px;max-width:105px;" id="sectorfilter" ng-model="filterOption">
+                <option value="">All</option>
+                <option>Ottawa</option>
+                <option>Gatineau</option>
+              </select>
+
+          </div>
+
+        </div>
+
+        </div>
+
+        <!-- Posts are displayed here -->
+        <div ng-repeat="post in posts | filter:{board:filterOption} | orderBy:postOrder |limitTo:10" style="margin-top:10px;">
+          <posts-view></posts-view>
+        </div>
+
+
+
+
+    </div>
+
+  </body>
+
+</html>

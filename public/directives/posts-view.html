@@ -1,0 +1,26 @@
+<div class="row post page-header" style="display:flex;align-items:center;">
+
+  <div class="col-xs-12" style="margin-left:10px;">
+
+    <div class="col-xs-6">
+      <h2>{{post.content}}</h2>
+      <h3>Posted near {{post.board}}</h3>
+      <h3>Score:{{post.likedby.length}}</h3>
+    </div>
+
+    <div class="col-xs-6" style="margin-top:56.5">
+
+      <div ng-show="currentUser" class="col-xs-3">
+
+        <a href>
+          <i ng-click="(post.likedby.indexOf(currentUser.username) != -1) ? post.likedby.splice(post.likedby.indexOf(currentUser.username),post.likedby.indexOf(currentUser.username)+1) : post.likedby.push(currentUser.username);toggleLike(post,post.likedby.indexOf(currentUser.username));"
+          ng-class="{'yakgreen': post.likedby.indexOf(currentUser.username) != -1}"
+          class="fa fa-thumbs-o-up fa-3x novote"></i>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

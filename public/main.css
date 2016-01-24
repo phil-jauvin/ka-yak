@@ -1,0 +1,40 @@
+.post{
+  margin-bottom:40px;
+}
+
+.btn-center{
+  display:inline-block;
+  margin-bottom:10px;
+}
+
+.btn-modal{
+  display:inline-block;
+  margin-top:10px;
+}
+
+.bg-parl{
+  background-image: url("ottawa.jpg");
+  background-size: cover;
+  max-width:100vw;
+}
+
+.jumbotron{
+  background:rgba(92, 184, 92,0.8);
+  color:floralwhite;
+}
+
+.novote{
+  color:lightgrey;
+}
+
+.novote:hover{
+  color:rgb(92, 184, 92);
+}
+
+.yakgreen{
+  color:rgb(92, 184, 92);
+}
+
+body{
+  padding-bottom: 6.5%;
+}
