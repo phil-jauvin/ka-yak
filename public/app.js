@@ -46,7 +46,7 @@ app.controller('PostController', ['$scope',"$resource","$http","$rootScope",func
 
   $scope.toggleLike = function(post,liked){
 
-    $scope.updateScore(post._id,post.likedby.length,!liked);
+    $scope.updateScore(post._id,post.likedby.length,liked);
 
   }
 
